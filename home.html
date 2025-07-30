@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task tracker</title>
+    <style>
+        body {
+
+            /* padding: 10px; */
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .backgrnd {
+            background-color: rgb(246, 247, 247);
+            padding: 60px;
+            height: 450px;
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            left: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        @media (max-width: 600px) {
+            .backgrnd {
+                width: 100%;
+                padding: 15px;
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .task-input {
+                flex-direction: column;
+            }
+        }
+
+        h2 {
+            text-align: center;
+            color: rgb(5, 104, 185);
+
+            font-size: 32px;
+            position: absolute;
+            top: 10px;
+        }
+
+        .date {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #888;
+            font-size: 20px;
+            position: absolute;
+            left: 220px;
+        }
+
+        .task-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 90px;
+            color: #4b4a4a;
+            gap: 110px;
+            font-size: 17px;
+        }
+
+        .spam {
+            display: flex;
+            gap: 170px;
+            position: absolute;
+            top: 120px;
+            font-size: 20px;
+            color: rgb(5, 104, 185);
+
+        }
+
+        .task-input {
+            display: flex;
+            padding: 15px;
+            border-radius: 10px;
+            outline: none;
+            border: 1px solid gray;
+            width: 200px;
+            cursor: pointer;
+        }
+
+        .find {
+            display: flex;
+            position: absolute;
+            top: 200px;
+            right: 70px;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .select {
+            border-radius: 10px;
+            border: 1px solid gray;
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .add {
+            background-color: rgb(5, 104, 185);
+            color: white;
+            border-radius: 10px;
+            border: 1ps solid gray;
+            outline: none;
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .add:hover,
+        .task-input:hover,
+        select:hover {
+            box-shadow: 2px 3px 5px rgb(34, 34, 34);
+            transition: 0.1s ease;
+        }
+
+        .filter {
+            display: flex;
+            gap: 10px;
+            position: absolute;
+            top: 280px;
+            right: 25px;
+        }
+
+        .filter button {
+            border-radius: 15px;
+            padding: 9px;
+            outline: none;
+            border: 1px solid gray;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .filter button:hover {
+            background-color: rgb(5, 104, 185);
+            color: white;
+            box-shadow: 2px 3px 5px gray;
+            transition: 0.1s ease;
+        }
+
+        .completed {
+            position: absolute;
+            top: 510px;
+            color: white;
+            background-color: red;
+            padding: 15px;
+            width: 550px;
+            border-radius: 10px;
+            border: 1px solid red;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .completed:hover {
+            box-shadow: 3px 4px 7px gray;
+            transition: 0.1s ease;
+        }
+
+        .abc {
+            padding: 17px;
+            display: flex;
+            position: absolute;
+            top: 350px;
+            border: 1px solid gray;
+            width: 550px;
+            border-radius: 10px;
+            border-left: 6px solid red;
+            gap: 220px;
+            cursor: pointer;
+        }
+
+        .bcd {
+            padding: 17px;
+            display: flex;
+            position: absolute;
+            top: 430px;
+            border: 1px solid gray;
+            width: 550px;
+            border-radius: 10px;
+            border-left: 6px solid red;
+            gap: 250px;
+            cursor: pointer;
+        }
+
+        .cde {
+            background-color: red;
+            color: white;
+            padding: 6px;
+            width: 100px;
+            border-radius: 5px;
+            outline: none;
+            border: 1px solid red;
+            cursor: pointer;
+
+        }
+
+        .def {
+            padding: 0;
+            height: 30px;
+            width: 50px;
+            color: red;
+            background-color: rgb(218, 183, 183);
+            border: none;
+            position: absolute;
+            border-radius: 5px;
+            left: 340px;
+            cursor: pointer;
+        }
+
+        .ghi {
+            color: #888;
+            position: absolute;
+            left: 400px;
+            bottom: 5px;
+        }
+
+        .ils {
+            font-size: 12px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="backgrnd">
+        <h2>Daily Task Tracker</h2>
+        <p class="date">Monday, July 28, 2025</p>
+
+        <div class="spam"> <span>0</span>
+            <span>0</span>
+            <span>0</span>
+        </div>
+        <div class="task-summary">
+            <div>Total Tasks</div>
+            <div>Completed</div>
+            <div>Pending</div>
+        </div>
+        <div>
+            <div class="find">
+                <input class="task-input" type="text" placeholder="Enter a new task...">
+                <select class="select">
+                    <option>Low Priority</option>
+                    <option>Medium Priority</option>
+                    <option>High Priority</option>
+                </select>
+                <button class="add">Add Task</button>
+            </div>
+            <div class="filter">
+                <button>All Tasks</button>
+                <button>Pending</button>
+                <button>Completed</button>
+                <button>High Priority</button>
+                <button>Medium Priority</button>
+                <button>Low Priority</button>
+            </div>
+        </div>
+        <div class="abc">
+            <label class="ils"><input type="checkbox">Complete project presentation for client meeting</label>
+            <button class="def">HIGH</button>
+            <p class="ghi">09:29 AM</p>
+            <button class="cde">Delete</button>
+
+        </div>
+        <div class="bcd">
+            <label class="ils"><input type="checkbox">Finish the 'Daily Task Tracker' project today </label>
+            <button class="def">HIGH</button>
+            <p class="ghi">09:29 AM</p>
+            <button class="cde" style="width: 80px;">Delete</button>
+        </div>
+        <button class="completed">CLEAR COMPLETED TASKS</button>
+    </div>
+
+    <script>
+        var taskInput = document.querySelector('.task-input');
+        var addBtn = document.querySelector('.add');
+        var select = document.querySelector('.select');
+        var taskContainer = document.querySelector('.backgrnd');
+        var clearCompletedBtn = document.querySelector('.completed');
+        var spamSpans = document.querySelectorAll('.spam span');
+        var filters = document.querySelectorAll('.filter button');
+
+        var tasks = [];
+
+        function updateCounts() {
+            var total = tasks.length;
+            var completedCount = 0;
+
+            for (var i = 0; i < tasks.length; i++) {
+                if (tasks[i].completed === true) {
+                    completedCount = completedCount + 1;
+                }
+            }
+
+            var pendingCount = total - completedCount;
+
+            spamSpans[0].textContent = total;
+            spamSpans[1].textContent = completedCount;
+            spamSpans[2].textContent = pendingCount;
+        }
+
+        function createTaskElement(task) {
+            var wrapper = document.createElement('div');
+            wrapper.className = 'abc';
+
+            var index = 0;
+            for (var i = 0; i < tasks.length; i++) {
+                if (tasks[i] === task) {
+                    index = i;
+                    break;
+                }
+            }
+
+            wrapper.style.top = (350 + index * 80) + 'px';
+
+            var label = document.createElement('label');
+            label.className = 'ils';
+
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = task.completed;
+
+            checkbox.addEventListener('change', function () {
+                task.completed = checkbox.checked;
+                if (task.completed) {
+                    label.style.textDecoration = 'line-through';
+                    label.style.color = '#999';
+                } else {
+                    label.style.textDecoration = 'none';
+                    label.style.color = '#000';
+                }
+                updateCounts();
+            });
+
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(' ' + task.text));
+
+            var priorityBtn = document.createElement('button');
+            priorityBtn.className = 'def';
+            priorityBtn.textContent = task.priority.toUpperCase();
+
+            var time = document.createElement('p');
+            time.className = 'ghi';
+            time.textContent = task.time;
+
+            var delBtn = document.createElement('button');
+            delBtn.className = 'cde';
+            delBtn.textContent = 'Delete';
+
+            delBtn.addEventListener('click', function () {
+                // Remove task from tasks array
+                var newTasks = [];
+                for (var i = 0; i < tasks.length; i++) {
+                    if (tasks[i] !== task) {
+                        newTasks.push(tasks[i]);
+                    }
+                }
+                tasks = newTasks;
+
+                renderTasks();
+            });
+
+            wrapper.appendChild(label);
+            wrapper.appendChild(priorityBtn);
+            wrapper.appendChild(time);
+            wrapper.appendChild(delBtn);
+
+            return wrapper;
+        }
+
+        function renderTasks(filter) {
+            if (filter === undefined) {
+                filter = 'All';
+            }
+
+            var existingTasks = document.querySelectorAll('.abc, .bcd');
+            for (var i = 0; i < existingTasks.length; i++) {
+                existingTasks[i].parentNode.removeChild(existingTasks[i]);
+            }
+
+            var positionY = 350;
+
+            for (var i = 0; i < tasks.length; i++) {
+                var task = tasks[i];
+                var shouldDisplay = false;
+
+                if (filter === 'All') {
+                    shouldDisplay = true;
+                } else if (filter === 'Completed' && task.completed === true) {
+                    shouldDisplay = true;
+                } else if (filter === 'Pending' && task.completed === false) {
+                    shouldDisplay = true;
+                } else if (task.priority.toLowerCase() === filter.toLowerCase()) {
+                    shouldDisplay = true;
+                }
+
+                if (shouldDisplay) {
+                    var taskElement = createTaskElement(task);
+                    taskElement.style.top = positionY + 'px';
+                    positionY = positionY + 80;
+                    taskContainer.appendChild(taskElement);
+                }
+            }
+
+            updateCounts();
+        }
+
+        function getCurrentTime() {
+            var now = new Date();
+
+            var hours = now.getHours();
+            var ampm = 'AM';
+
+            if (hours >= 12) {
+                ampm = 'PM';
+            }
+
+            hours = hours % 12;
+            if (hours === 0) {
+                hours = 12;
+            }
+
+            var minutes = now.getMinutes();
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+
+            return hours + ':' + minutes + ' ' + ampm;
+        }
+
+        addBtn.addEventListener('click', function () {
+            var text = taskInput.value.trim();
+            if (text === '') {
+                return;
+            }
+
+            var newTask = {
+                text: text,
+                priority: select.value,
+                time: getCurrentTime(),
+                completed: false
+            };
+
+            tasks.push(newTask);
+
+            taskInput.value = '';
+
+            renderTasks();
+        });
+
+        clearCompletedBtn.addEventListener('click', function () {
+            var newTasks = [];
+            for (var i = 0; i < tasks.length; i++) {
+                if (tasks[i].completed === false) {
+                    newTasks.push(tasks[i]);
+                }
+            }
+            tasks = newTasks;
+
+            renderTasks();
+        });
+
+        for (var i = 0; i < filters.length; i++) {
+            filters[i].addEventListener('click', function () {
+                var filterText = this.textContent;
+                renderTasks(filterText);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            tasks = [
+                {
+                    text: 'Complete project presentation for client meeting',
+                    priority: 'High',
+                    time: '09:29 AM',
+                    completed: false
+                },
+                {
+                    text: "Finish the 'Daily Task Tracker' project today",
+                    priority: 'High',
+                    time: '09:29 AM',
+                    completed: false
+                }
+            ];
+
+            renderTasks();
+        });
+
+    </script>
+</body>
+
+</html>
