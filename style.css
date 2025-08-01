@@ -1,0 +1,217 @@
+   body {
+
+            /* padding: 10px; */
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .backgrnd {
+            background-color: rgb(246, 247, 247);
+            padding: 60px;
+            height: 450px;
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            left: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        @media (max-width: 600px) {
+            .backgrnd {
+                width: 100%;
+                padding: 15px;
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .task-input {
+                flex-direction: column;
+            }
+        }
+
+        h2 {
+            text-align: center;
+            color: rgb(5, 104, 185);
+
+            font-size: 32px;
+            position: absolute;
+            top: 10px;
+        }
+
+        .date {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #888;
+            font-size: 20px;
+            position: absolute;
+            left: 220px;
+        }
+
+        .task-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 90px;
+            color: #4b4a4a;
+            gap: 110px;
+            font-size: 17px;
+        }
+
+        .spam {
+            display: flex;
+            gap: 170px;
+            position: absolute;
+            top: 120px;
+            font-size: 20px;
+            color: rgb(5, 104, 185);
+
+        }
+
+        .task-input {
+            display: flex;
+            padding: 15px;
+            border-radius: 10px;
+            outline: none;
+            border: 1px solid gray;
+            width: 200px;
+            cursor: pointer;
+        }
+
+        .find {
+            display: flex;
+            position: absolute;
+            top: 200px;
+            right: 70px;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .select {
+            border-radius: 10px;
+            border: 1px solid gray;
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .add {
+            background-color: rgb(5, 104, 185);
+            color: white;
+            border-radius: 10px;
+            border: 1ps solid gray;
+            outline: none;
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .add:hover,
+        .task-input:hover,
+        select:hover {
+            box-shadow: 2px 3px 5px rgb(34, 34, 34);
+            transition: 0.1s ease;
+        }
+
+        .filter {
+            display: flex;
+            gap: 10px;
+            position: absolute;
+            top: 280px;
+            right: 25px;
+        }
+
+        .filter button {
+            border-radius: 15px;
+            padding: 9px;
+            outline: none;
+            border: 1px solid gray;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .filter button:hover {
+            background-color: rgb(5, 104, 185);
+            color: white;
+            box-shadow: 2px 3px 5px gray;
+            transition: 0.1s ease;
+        }
+
+        .completed {
+            position: absolute;
+            top: 510px;
+            color: white;
+            background-color: red;
+            padding: 15px;
+            width: 550px;
+            border-radius: 10px;
+            border: 1px solid red;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .completed:hover {
+            box-shadow: 3px 4px 7px gray;
+            transition: 0.1s ease;
+        }
+
+        .abc {
+            padding: 17px;
+            display: flex;
+            position: absolute;
+            top: 350px;
+            border: 1px solid gray;
+            width: 550px;
+            border-radius: 10px;
+            border-left: 6px solid red;
+            gap: 220px;
+            cursor: pointer;
+        }
+
+        .bcd {
+            padding: 17px;
+            display: flex;
+            position: absolute;
+            top: 430px;
+            border: 1px solid gray;
+            width: 550px;
+            border-radius: 10px;
+            border-left: 6px solid red;
+            gap: 250px;
+            cursor: pointer;
+        }
+
+        .cde {
+            background-color: red;
+            color: white;
+            padding: 6px;
+            width: 100px;
+            border-radius: 5px;
+            outline: none;
+            border: 1px solid red;
+            cursor: pointer;
+
+        }
+
+        .def {
+            padding: 0;
+            height: 30px;
+            width: 50px;
+            color: red;
+            background-color: rgb(218, 183, 183);
+            border: none;
+            position: absolute;
+            border-radius: 5px;
+            left: 340px;
+            cursor: pointer;
+        }
+
+        .ghi {
+            color: #888;
+            position: absolute;
+            left: 400px;
+            bottom: 5px;
+        }
+
+        .ils {
+            font-size: 12px;
+            white-space: nowrap;
+        }
